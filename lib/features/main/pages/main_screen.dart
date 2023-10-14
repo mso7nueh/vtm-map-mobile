@@ -24,6 +24,20 @@ class _MainScreenState extends State<MainScreen> {
         children: [
           YandexMap(
             key: mapKey,
+            mapObjects: [
+              PlacemarkMapObject(
+                mapId: const MapObjectId('vtb'),
+                point: const Point(latitude: 55.760428, longitude: 37.650028),
+                opacity: 1,
+                icon: PlacemarkIcon.single(
+                  PlacemarkIconStyle(
+                    image: BitmapDescriptor.fromAssetImage('assets/images/vtb.png'),
+                    scale: 0.6,
+                  ),
+                ),
+                onTap: (placeMarkObject, point) {},
+              ),
+            ],
             onMapCreated: (YandexMapController yandexMapController) async {
               controller = yandexMapController;
               if (await locationPermissionGranted) {
@@ -42,32 +56,37 @@ class _MainScreenState extends State<MainScreen> {
                   animation: const MapAnimation(),
                 );
               }
-              return view;
+              return view.copyWith(
+                arrow: view.arrow.copyWith(
+                  icon: PlacemarkIcon.single(
+                    PlacemarkIconStyle(
+                      image: BitmapDescriptor.fromAssetImage('assets/images/me.png'),
+                      scale: 0.6,
+                    ),
+                  ),
+                ),
+              );
             },
           ),
           const FindSuitableBranchButtonWidget(),
-          Padding(
-            padding: const EdgeInsets.only(top: 128.0),
-            child: DraggableScrollableSheet(
-              snap: true,
-              snapAnimationDuration: const Duration(milliseconds: 200),
-              builder: (context, scrollController) {
-                return ListView.builder(
-                  controller: scrollController,
-                  itemCount: 1,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      height: 5000,
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(24.0), topRight: Radius.circular(24.0))
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
+          DraggableScrollableSheet(
+            snap: true,
+            snapSizes: const [0.25, 0.5, 0.9],
+            snapAnimationDuration: const Duration(milliseconds: 200),
+            builder: (context, scrollController) {
+              return ListView.builder(
+                controller: scrollController,
+                itemCount: 1,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    height: 5000,
+                    width: double.infinity,
+                    decoration: const BoxDecoration(
+                        color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(24.0), topRight: Radius.circular(24.0))),
+                  );
+                },
+              );
+            },
           ),
         ],
       ),

@@ -28,8 +28,15 @@ class FindSuitableBranchButtonWidget extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 24.0, top: 20.0),
-            child: Image.asset('assets/images/robot.png', height: 90.0),
+            padding: const EdgeInsets.only(
+              left: 24.0,
+              top: 28.0,
+            ),
+            child: Image.asset(
+              'assets/images/robot.png',
+              height: 84.0,
+              width: 62.0,
+            ),
           ),
         ],
       ),
