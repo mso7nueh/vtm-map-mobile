@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
@@ -47,7 +48,6 @@ class _MainScreenState extends State<MainScreen> {
             barrierColor: Colors.transparent,
             isScrollControlled: true,
             context: context,
-            isDismissible: false,
             backgroundColor: Colors.white,
             showDragHandle: true,
             shape: const RoundedRectangleBorder(
@@ -59,7 +59,7 @@ class _MainScreenState extends State<MainScreen> {
             elevation: 8.0,
             builder: (BuildContext context) {
               return Container(
-                height: 10,
+                height: 100,
               );
             },
           );
