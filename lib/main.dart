@@ -12,7 +12,7 @@ void main() async {
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
-      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.white,
     ),
   );
   await di.init();
@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      theme: ThemeData(),
+      theme: ThemeData(useMaterial3: true, fontFamily: 'VTB'),
       routerConfig: AppRouter().router,
       localizationsDelegates: const [
         S.delegate,
