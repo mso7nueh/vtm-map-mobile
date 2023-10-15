@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:promenade/app_router.dart';
+import 'package:promenade/features/main/blocs/map_cubit/map_cubit.dart';
+import 'package:promenade/features/main/pages/main_screen.dart';
 import 'package:promenade/generated/l10n.dart';
 import 'package:promenade/locator_service.dart' as di;
+import 'package:promenade/locator_service.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 void main() async {
@@ -30,17 +33,22 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      theme: ThemeData(useMaterial3: true, fontFamily: 'VTB'),
-      routerConfig: AppRouter().router,
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<MapCubit>(create: (context) => sl<MapCubit>()),
       ],
-      supportedLocales: S.delegate.supportedLocales,
-      debugShowCheckedModeBanner: false,
+      child: MaterialApp(
+        theme: ThemeData(useMaterial3: true, fontFamily: 'VTB'),
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        debugShowCheckedModeBanner: false,
+        home: const MainScreen(),
+      ),
     );
   }
 }

@@ -8,3 +8,6 @@ const Gradient accent = LinearGradient(
     Color(0xFF0085FF),
   ],
 );
+
+const Color blue = Color(0xFF0D69F2);
+const Color purple = Color(0xFF6967DA);

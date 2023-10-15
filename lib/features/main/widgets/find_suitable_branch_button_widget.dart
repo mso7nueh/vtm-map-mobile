@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:promenade/common/app_colors.dart';
 import 'package:promenade/common/text_styles.dart';
+import 'package:promenade/features/main/pages/chat_screen.dart';
 
 class FindSuitableBranchButtonWidget extends StatelessWidget {
   const FindSuitableBranchButtonWidget({super.key});
@@ -8,7 +9,9 @@ class FindSuitableBranchButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ChatScreen()));
+      },
       child: Stack(
         alignment: Alignment.topLeft,
         children: [
